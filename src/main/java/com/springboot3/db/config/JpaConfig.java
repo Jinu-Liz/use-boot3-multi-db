@@ -21,7 +21,7 @@ public class JpaConfig {
 
   @Bean
   @Primary
-//  @Qualifier("FirstQF")
+  @Qualifier("FirstQF")
   JPAQueryFactory firstQueryFactory() {
     return new JPAQueryFactory(firstEntityManager);
   }
