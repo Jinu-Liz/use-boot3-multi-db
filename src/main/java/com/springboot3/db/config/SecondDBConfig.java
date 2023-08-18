@@ -1,18 +1,15 @@
 package com.springboot3.db.config;
 
-import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
@@ -36,21 +33,21 @@ public class SecondDBConfig extends DBConfig {
 
   private final String SECOND_SESSION_TEMPLATE = "secondSessionTemplate";
 
+  private final String SECOND_ENTITY_PACKAGE = "com.springboot3.db.entity.second";
+
+  private final String SECOND_PERSIST_UNIT_NAME = "secondEntityManager";
+
   @ConfigurationProperties(prefix = "spring.second-db.datasource")
   @Bean(name = SECOND_DATA_SOURCE)
   public DataSource secondDataSource() {
-    return DataSourceBuilder.create().type(HikariDataSource.class).build();
+
+    return super.setDataSource();
   }
 
   @Bean(name = SECOND_MANAGER_FACTORY)
   public EntityManagerFactory entityManagerFactory(@Qualifier(SECOND_DATA_SOURCE) DataSource dataSource) {
-    LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-    factory.setDataSource(dataSource);
-    factory.setPackagesToScan("com.springboot3.db.entity.second");
-    factory.setPersistenceUnitName("secondEntityManager");
-    setConfigEntityManagerFactory(factory);
 
-    return factory.getObject();
+    return super.setEntityManagerFactory(dataSource, SECOND_ENTITY_PACKAGE, SECOND_PERSIST_UNIT_NAME);
   }
 
   @Bean(name = SECOND_TRANSACTION_MANAGER)
@@ -62,7 +59,7 @@ public class SecondDBConfig extends DBConfig {
   @Bean(name = SECOND_SESSION_FACTORY)
   public SqlSessionFactory sqlSessionFactory(@Qualifier(SECOND_DATA_SOURCE) DataSource dataSource) throws Exception {
 
-    return makeSqlSessionFactory(dataSource);
+    return super.makeSqlSessionFactory(dataSource);
   }
 
   @Bean(name = SECOND_SESSION_TEMPLATE)

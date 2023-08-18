@@ -10,7 +10,6 @@ import com.springboot3.db.repository.first.PokemonRepository;
 import com.springboot3.db.repository.second.ItemRepository;
 import com.springboot3.db.service.first.PokemonService;
 import com.springboot3.db.service.second.ItemService;
-import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -39,9 +38,6 @@ public class DBConnectTest {
 
   @Autowired
   ItemService itemService;
-
-  @Autowired
-  EntityManager entityManager;
 
   @Test
   void firstDB() {
