@@ -54,6 +54,8 @@ public class DBConnectTest {
     pokemonDto.setName("Eevee");
     pokemonDto.setType("NORMAL");
     pokemonMapper.addPokemon(pokemonDto);
+
+    pokemonMapper.deletePokemon("Eevee");
   }
 
   @Test

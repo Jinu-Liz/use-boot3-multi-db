@@ -14,4 +14,6 @@ public interface PokemonMapper {
 
   void addPokemon(PokemonDto pokemonDto);
 
+  void deletePokemon(String name);
+
 }

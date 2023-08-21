@@ -21,4 +21,9 @@
             #{type}
         )
     </insert>
+
+    <delete id="deletePokemon" parameterType="String">
+        DELETE FROM pokemon
+        WHERE name = #{name}
+    </delete>
 </mapper>
