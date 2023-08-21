@@ -64,7 +64,7 @@ public class SecondDBConfig extends DBConfig {
 
   @Bean(name = SECOND_SESSION_TEMPLATE)
   public SqlSessionTemplate secondSqlSessionTemplate(@Qualifier(SECOND_SESSION_FACTORY) SqlSessionFactory sqlSessionFactory) {
-    setMybatisProperties(sqlSessionFactory);
+    super.setMybatisProperties(sqlSessionFactory);
 
     return new SqlSessionTemplate(sqlSessionFactory);
   }

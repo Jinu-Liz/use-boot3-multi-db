@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 import java.util.Map;
 
 @Configuration
-public class DBConfig extends HikariConfig {
+public class DBConfig {
 
   @Autowired
   private HibernateProperties hibernateProperties;
@@ -63,7 +63,6 @@ public class DBConfig extends HikariConfig {
     sessionFactoryBean.setVfs(SpringBootVFS.class);
     sessionFactoryBean.setMapperLocations(mybatisProperties.resolveMapperLocations());
     sessionFactoryBean.setTypeAliasesPackage(mybatisProperties.getTypeAliasesPackage());
-//    sessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource(mybatisProperties.getConfigLocation()));
 
     return sessionFactoryBean.getObject();
   }

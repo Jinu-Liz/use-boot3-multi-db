@@ -70,7 +70,7 @@ public class FirstDBConfig extends DBConfig {
   @Bean(name = FIRST_SESSION_TEMPLATE)
   @Primary
   public SqlSessionTemplate firstSqlSessionTemplate(@Qualifier(FIRST_SESSION_FACTORY) SqlSessionFactory sqlSessionFactory) {
-    setMybatisProperties(sqlSessionFactory);
+    super.setMybatisProperties(sqlSessionFactory);
 
     return new SqlSessionTemplate(sqlSessionFactory);
   }

@@ -23,7 +23,7 @@ spring:
     open-in-view: true
     properties:
       hibernate:
-        physical_naming_strategy: com.springboot3.db.config.naming.CamelCaseToSnakeNamingStrategy
+        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         dialect: org.hibernate.dialect.MariaDBDialect
         show_sql: true
@@ -38,4 +38,3 @@ mybatis:
     jdbc-type-for-null: NULL
   mapper-locations: classpath:/mybatis/mapper/*.xml
   type-aliases-package: com.springboot3.db.dto
-#  config-location: classpath:/mybatis/config/mybatis-config.xml
