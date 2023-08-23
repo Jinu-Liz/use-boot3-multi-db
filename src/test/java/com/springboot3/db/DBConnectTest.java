@@ -50,12 +50,6 @@ public class DBConnectTest {
     List<PokemonEntity> pokemonEntities = pokemonService.selectPokemon();
     pokemonEntities.forEach(ent -> System.out.println("FIRST DB QueryDSL : " + ent.getPokemonId() + " : " + ent.getName()));
 
-    PokemonDto pokemonDto = new PokemonDto();
-    pokemonDto.setName("Eevee");
-    pokemonDto.setType("NORMAL");
-    pokemonMapper.addPokemon(pokemonDto);
-
-    pokemonMapper.deletePokemon("Eevee");
   }
 
   @Test
