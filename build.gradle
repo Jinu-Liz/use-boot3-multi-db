@@ -66,15 +66,15 @@ sourceSets {
     main.java.srcDirs += [ querydslDir ]
 }
 
-tasks.withType(JavaCompile) {
-    options.generatedSourceOutputDirectory = file(querydslDir)
-}
-
 clean.doLast {
     file(querydslDir).deleteDir()
 }
 
+tasks.withType(JavaCompile) {
+    options.generatedSourceOutputDirectory = file(querydslDir)
+}
+
 /* 빌드 시 테스트 제외 */
-test {
-    exclude '**/*'
+tasks.withType(Test) {
+    enabled = false
 }
